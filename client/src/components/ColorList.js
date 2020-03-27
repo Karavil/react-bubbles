@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
+import NewColorForm from "./NewColorForm";
+
 const initialColor = {
    color: "",
    code: { hex: "" }
@@ -33,6 +35,22 @@ const ColorList = ({ colors, updateColors }) => {
          .catch(err => console.log(err));
    };
 
+   const addColor = (name, hex) => {
+      console.log(name, hex);
+      axiosWithAuth()
+         .post("/colors", {
+            color: name,
+            code: {
+               hex
+            }
+         })
+         .then(res => {
+            console.log(res);
+            updateColors(res.data);
+         })
+         .catch(err => console.log(err));
+   };
+
    const deleteColor = colorToDelete => {
       axiosWithAuth()
          .delete("/colors/" + colorToDelete.id)
@@ -49,7 +67,7 @@ const ColorList = ({ colors, updateColors }) => {
          <p>colors</p>
          <ul>
             {colors.map(color => (
-               <li key={color.color} onClick={() => editColor(color)}>
+               <li key={color.id} onClick={() => editColor(color)}>
                   <span>
                      <span
                         className="delete"
@@ -102,8 +120,8 @@ const ColorList = ({ colors, updateColors }) => {
                </div>
             </form>
          )}
+         <NewColorForm addColor={addColor} />
          <div className="spacer" />
-         {/* stretch - build another form here to add a color */}
       </div>
    );
 };
