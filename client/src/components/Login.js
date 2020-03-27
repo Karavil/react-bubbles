@@ -1,5 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+
+import axios from "axios";
+
 import styled from "styled-components";
 
 const StyledForm = styled.form`
@@ -10,8 +14,22 @@ const StyledForm = styled.form`
    height: 40vh;
 `;
 export default function Login() {
-   const { register, handleSubmit, errors } = useForm();
-   const onSubmit = data => console.log(data);
+   const history = useHistory();
+   const { register, handleSubmit } = useForm();
+
+   const onSubmit = data => {
+      axios
+         .post("http://localhost:5000/api/login", {
+            ...data
+         })
+         .then(res => {
+            localStorage.setItem("token", JSON.stringify(res.data.payload));
+            history.push("/bubbles");
+         })
+         .catch(err => {
+            console.log(err);
+         });
+   };
 
    return (
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
