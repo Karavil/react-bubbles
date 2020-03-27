@@ -31,7 +31,7 @@ export default function Login({ addColor }) {
             name="hex"
             ref={register({ required: true })}
          />
-         <input type="submit" />
+         <button type="submit">Submit</button>
       </StyledForm>
    );
 }

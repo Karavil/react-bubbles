@@ -101,6 +101,7 @@ function authenticator(req, res, next) {
 }
 
 app.post("/api/login", (req, res) => {
+   console.log("User loggin in!");
    const { username, password } = req.body;
    if (username === "demo" && password === "password") {
       req.loggedIn = true;
@@ -121,9 +122,7 @@ app.get("/api/colors", authenticator, (req, res) => {
 });
 
 app.post("/api/colors", authenticator, (req, res) => {
-   console.log(req);
    if (req.body.color !== undefined && req.body.code !== undefined) {
-      console.log("Adding new color");
       const newcolor = req.body;
       newcolor.id = nextId;
       colors.push(newcolor);

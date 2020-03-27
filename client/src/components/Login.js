@@ -46,7 +46,7 @@ export default function Login() {
             name="password"
             ref={register({ required: true, maxLength: 80 })}
          />
-         <input type="submit" />
+         <button type="submit">Submit</button>
       </StyledForm>
    );
 }

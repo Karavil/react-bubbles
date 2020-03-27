@@ -7,16 +7,14 @@ import BubblePage from "./components/BubblePage";
 
 function App() {
    return (
-      <Router>
-         <div className="App">
-            <Route exact path="/">
-               <Login />
-            </Route>
-            <PrivateRoute exact path="/bubbles">
-               <BubblePage />
-            </PrivateRoute>
-         </div>
-      </Router>
+      <div className="App">
+         <Route exact path="/">
+            <Login />
+         </Route>
+         <PrivateRoute exact path="/bubbles">
+            <BubblePage />
+         </PrivateRoute>
+      </div>
    );
 }
 
