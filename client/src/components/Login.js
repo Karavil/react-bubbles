@@ -23,7 +23,7 @@ export default function Login() {
             ...data
          })
          .then(res => {
-            localStorage.setItem("token", JSON.stringify(res.data.payload));
+            localStorage.setItem("token", res.data.payload);
             history.push("/bubbles");
          })
          .catch(err => {

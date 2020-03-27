@@ -5,7 +5,7 @@ export default function PrivateRoute({ children, ...rest }) {
       <Route
          {...rest}
          render={({ location }) =>
-            JSON.parse(localStorage.getItem("token")) ===
+            localStorage.getItem("token") ===
             "ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98" ? (
                children
             ) : (
